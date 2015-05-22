@@ -11,7 +11,7 @@ outdata <- subset(NEI_ALL,find_coal)
 #统计煤炭各年份的PM2.5总排量
 final_data <- aggregate(Emissions ~ year, outdata, sum)
 #输出图片
-png(filename="plot4.png")
-g <- ggplot(final_data, aes(year, Emissions)) +geom_point()+ geom_line() + xlab("年份") + ylab(expression("PM"[2.5]*"排放总量")) + ggtitle("煤炭来源的总排放量") + geom_text(label=final_data$year,x=final_data$year,y=final_data$Emissions+8500)
+png(filename="plot4.png",width=650)
+g <- ggplot(final_data, aes(year, Emissions)) +geom_point()+ geom_line() + xlab("年份") + ylab(expression("PM"[2.5]*"排放总量")) + ggtitle("煤炭来源的总排放量") + geom_text(label=ceiling(final_data$Emissions),x=final_data$year,y=final_data$Emissions+8500)
 print(g)
 dev.off()
